@@ -1,2 +1,5 @@
 Sample.tex
 tmp
+*.aux
+*.log
+*.toc
