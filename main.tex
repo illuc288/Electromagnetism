@@ -1,0 +1,60 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{bm}
+\usepackage{wrapfig}
+\usepackage{graphicx}
+\usepackage{ mathrsfs }
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+
+\graphicspath{ {extras/} }
+
+% per usare la r corsiva di griffiths
+% punti esclamativi per togliere lo spazio extra strano
+\def\rcurs{{\mbox{$\resizebox{.16in}{.08in}{\includegraphics{ScriptR}}$}} \!\!}
+\def\brcurs{{\mbox{$\resizebox{.16in}{.08in}{\includegraphics{BoldR}}$}}}
+\def\hrcurs{{\mbox{$\hat \brcurs$}} } 
+
+\renewcommand{\epsilon}{\varepsilon}
+\newcommand{\ez}{\epsilon_0}
+\newcommand{\mbf}{\mathbf}
+\newcommand{\vers}[1]{\mbf{\hat #1 }}
+\newcommand{\qpe}[1][1]{ \frac{ #1 }{ 4\pi\epsilon_0 } }
+\newcommand{\mqp}[1][]{ \frac{ \mu_0 #1 }{ 4\pi } }
+\newcommand{\rot}[1][]{\nabla#1 \times}  % il parametro è in caso voglia mettere l'apostrofo per derivare rispetto a coord primate
+\newcommand{\grad}[1][]{\nabla#1}
+\renewcommand{\div}[1][]{\nabla#1 \cdot}
+
+\numberwithin{equation}{section}
+
+\title{ Electromagnetism }
+\author{William Luciani}
+\date{July 2021}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\pagebreak
+
+
+\input{costanti}
+
+\input{strumenti_matematici}
+
+\input{elettrostatica_vuoto}
+
+\input{elettrostatica_materiali}
+
+\input{correnti}
+
+\input{magnetostatica_vuoto}
+
+\input{magnetostatica_materiali}
+
+
+
+\end{document}

@@ -1,0 +1,235 @@
+\section{Magnetostatica} % (fold)
+\label{sec:magnetostatica}
+
+\subsection{Formule sperimentali} % (fold)
+\label{sub:formule_sperimentali_m}
+
+Un piccolo tratto di circuito $d \mbf l$ percorso da una corretne $I$ posto in un campo magnetico, subisce una forza data da:
+\begin{equation} \label{eq:prima_laplace} 
+    d \mbf F = I d \mbf l \times \mbf B
+\end{equation}
+Questa è la seconda legge di Laplace che, integrata, ci da la forza sul circuito intero. 
+Da questa si può ricavare la componente magnetica della forza di Lorentz:
+\begin{equation}
+    \mbf F = q \mbf v \times \mbf B
+\end{equation}
+Mentre la forza di Lorentz "complessiva" è:
+\begin{equation}
+    \mbf F = q ( \mbf E + \mbf v \times \mbf B )
+\end{equation}
+
+Ora, come viene generato un campo magnetico? Per un circuito vale la prima legge di Laplace, anche detta legge di Biot-Savart:
+\begin{equation}
+    d \mbf B = \frac{ \mu_0 }{ 4 \pi } \frac{ I d \mbf l' \times \hrcurs }{ \rcurs^2 } 
+\end{equation}
+Il campo complessivo, ancora, viene trovato integrando. Anche per le correnti poi valgono delle formule analoghe alle \ref{eq:dizionario_carica}. Si possono infatti avere correnti di diverso tipo: una carica in moto, una corrente lineare, una corrente superficiale e una corrente volumica. Vale quindi il seguente "dizionario" per passare da una all'altra
+\begin{equation}
+    \mbf v dq = I d \mbf l = \mbf K dS = \mbf J d\tau
+\end{equation}
+Valgono quindi le seguenti formule per il campo magnetico:
+\begin{equation}
+    \mbf B  = \mqp \oint I d \mbf l' \times \frac{ \hrcurs }{ \rcurs^2 } 
+            = \mqp \int \mbf K \times \frac{ \hrcurs }{ \rcurs^2 } dS'
+            = \mqp \int \mbf J \times \frac{ \hrcurs }{ \rcurs^2 } d\tau'
+\end{equation}
+
+% subsection formule_sperimentali_m (end)
+
+\subsection{Terza equazione di Maxwell} % (fold)
+\label{sub:terza_equazione_di_maxwell}
+
+Vogliamo ora trovare le equazioni di Maxwell per la magnetostatica, ovvero trovare la divergenza e il rotore del campo magnetico. 
+\begin{equation}
+    \div \mbf B 
+        = \mqp \oint \div \left ( \frac{ I d \mbf l' \times \hrcurs }{ \rcurs^2 }  \right ) 
+        = \mqp[I] \oint - d \mbf l' \div \left ( \frac{ \hrcurs }{ \rcurs^2 }  \right )
+        = 0
+\end{equation}
+Dove nella seconda disuguaglianza abbiamo sfruttato il fatto che $d \mbf l'$ era indipendente da $\mbf r$ e nella terza abbiamo sfruttato la \ref{eq:derivate_utili_rot}.
+Per cui abbiamo la terza equazione di Maxwell, che sarà vera anche passando ai materiali e al caso dinamico:
+\begin{equation}
+    \div \mbf B = 0
+\end{equation}
+Infatti questa equazione contiene il fatto che non esistono monopoli magnetici, che è un fatto  universale. 
+
+Questa equazione, analogamente alla seconda, ci dice che $\mbf B$ ammette un potenziale, tuttavia poiché è la divergenza ad annullarsi anziché il rotore, avremo un potenziale vettore $\mbf A$:
+\begin{equation}
+    \mbf B = \rot \mbf A
+\end{equation}
+A partire dalla formula del campo, possiamo trovare un espressione per $\mbf A$:
+\begin{align}
+    \mbf B   
+        &= \mqp \int \mbf J \times \frac{ \hrcurs }{ \rcurs^2 } d\tau'
+        = \mqp \int \mbf J \times \grad \frac{ 1 }{ \rcurs } d\tau'  \\
+        &= \mqp \left ( \int \frac{ 1 }{ \rcurs } \rot \mbf J d\tau' -  \int \rot \left ( \frac{ 1 }{ \rcurs }  \mbf J \right ) d\tau' \right )
+        = \rot \left ( \mqp \int  \frac{ \mbf J}{ \rcurs } d\tau'  \right )
+\end{align}
+
+Quindi si ha:
+\begin{equation} \label{eq:A_da_corr} 
+    \mbf A = \mqp \int_V  \frac{ \mbf J}{ \rcurs } d\tau'
+\end{equation}
+e analogamente al campo magnetico, nel caso di correnti di altro tipo:
+\begin{equation}
+    \mbf A 
+        = \mqp \oint  \frac{ I d \mbf l'}{ \rcurs } 
+        = \mqp \int_S  \frac{ \mbf K dS' }{ \rcurs } 
+\end{equation}
+
+C'è poi un altro modo di ricavare la \ref{eq:A_da_corr}, utilizzando la quarta equazione di Maxwell. Infatti si ha:
+\begin{equation}
+    \rot \mbf B = \rot (\rot \mbf A) = -\nabla^2 \mbf A + \grad ( \div \mbf A )
+\end{equation}
+e $\mbf A$ può sempre esser preso con divergenza 0, per cui si può scrivere:
+\begin{equation}
+    \nabla^2 \mbf A = - \rot \mbf B = - \mu_0 \mbf J
+\end{equation}
+Quindi analogamente all'equazione di Poisson si avrà appunto la \ref{eq:A_da_corr}. 
+
+Mostriamo che si può sempre prendere $\div \mbf A = 0$. Per la definizione di $\mbf A$ data, un'altra funzione:
+\begin{equation}
+    \mbf A' = \mbf A + \grad f
+\end{equation}
+sarà anch'essa un potenziale ammissibile, poiché il rotore del gradiente è nullo, per cui $\rot \mbf A' = \rot \mbf A = \mbf B$. Mostriamo quindi che se $\div A \neq 0$ allora posso prendere un altro potenziale $\mbf A'$ a divergenza nulla:
+\begin{equation}
+    \div \mbf A' = \div \mbf A + \nabla^2 f = 0
+\end{equation}
+Quindi è sufficiente trovare una funzione $f$ che soddisfa:
+\begin{equation}
+    \nabla^2 f = - \div \mbf A
+\end{equation}
+Che è banalmente l'equazione di Poisson, che ammette una soluzione unica. 
+
+% subsection terza_equazione_di_maxwell (end)
+
+\subsection{Quarta equazione di Maxwell} % (fold)
+\label{sub:quarta_equazione_di_maxwell}
+
+\subsubsection{Metodo mio} % (fold)
+\label{ssub:metodo_mio}
+
+Cerchiamo ora di calcolare il rotore:
+\begin{equation}
+    \rot \mbf B 
+        = \mqp \int \mbf \rot \left ( \mbf J \times \frac{ \hrcurs }{ \rcurs^2 } \right ) d\tau'
+        = \mqp \int \mbf J (\div \frac{ \hrcurs }{ \rcurs^2 }) d\tau'
+        = \mqp \int \mbf J(\mbf r') 4 \pi \delta(\mbf r) d\tau'
+\end{equation}
+Nella seconda uguaglianza abbiamo usato la \ref{eq:rot_prod_vett} nel caso in cui il primo termine sia indipendente dalla variabile di derivazione:
+\begin{align}
+    \rot (\mbf A \times \mbf B) &= - (\mbf A \cdot \nabla) \mbf B + \mbf A (\div \mbf B) \\
+    \rot (\mbf J \times \frac{ \hrcurs }{ \rcurs^2 }) &= - (\mbf J \cdot \nabla) \frac{ \hrcurs }{ \rcurs^2 } + \mbf J (\div \frac{ \hrcurs }{ \rcurs^2 }) 
+\end{align}
+Si può mostrare che il primo termine non contribuisce, mentre il secondo è appunto una delta come scritto sopra.
+Quindi l'ultima equazione di Maxwell, nel vuoto nel caso statico è data da:
+\begin{equation}
+    \rot \mbf B = \mu_0 \mbf J
+\end{equation}
+Mostriamo ora che il primo termine non contribuisce. Per comodità usiamo la funzione $f= 1 / \rcurs$.
+\begin{equation}
+    - (\mbf J \cdot \nabla) \frac{ \hrcurs }{ \rcurs^2 } = - (\mbf J \cdot \nabla) \nabla' f = - \nabla' ( \mbf J \cdot \nabla f)
+\end{equation}
+Sfruttiamo poi il fatto che:
+\begin{equation}
+    \int_V \grad T d\tau = \oint_S T d\mbf S
+\end{equation}
+Nel nostro caso: 
+\begin{equation}
+    - \int_V \grad['] ( \mbf J \cdot \nabla f) 
+        = \oint_S \mbf J \cdot \nabla' f d\mbf S 
+        = \oint_S \mbf J \cdot \frac{ \hrcurs }{ \rcurs^2 }  d\mbf S
+\end{equation}
+Ora, la superficie $S$ sarebbe il bordo di $V$, tuttavia possiamo allargare il dominio di integrazione, prendendo $\mbf J=0$ fuori dal dominio originale. Ma allora sulla superficie $S$ adesso $\mbf J=0$ e questo integrale è nullo.
+DIMOSTRAZIONE MIA MA SUPER LUNGA E TOSTA DA RICORDARE.
+
+% subsubsection metodo_mio (end)
+
+\subsubsection{Metodo Griffiths} % (fold)
+\label{ssub:metodo_griffiths}
+
+Griffiths fa uguale ma dimostra diversamente che il primo termine si annulla. Ripartiamo da:
+\begin{equation}
+    - (\mbf J \cdot \nabla) \frac{ \hrcurs }{ \rcurs^2 } = (\mbf J \cdot \nabla') \frac{ \hrcurs }{ \rcurs^2 }
+\end{equation}
+E pensiamo alla componente $x$:
+\begin{equation}
+    (\mbf J \cdot \nabla') \frac{ \rcurs_x }{ \rcurs^3 } 
+        = \mbf J \cdot \nabla' \left ( \frac{ \rcurs_x }{ \rcurs^3 } \right ) 
+        = \div['] \left ( \mbf J \frac{ \rcurs_x }{ \rcurs^3 } \right ) - \frac{ \rcurs_x }{ \rcurs^3 } (\div['] \mbf J)
+\end{equation}
+Osserviamo poi che nel caso di correnti stazionarie $\div['] \mbf J = 0$. Possiamo poi applicare il teorema della divergenza e fare gli stessi ragionamenti di sopra per dire che si annulla. 
+
+% subsubsection metodo_griffiths (end)
+
+\subsubsection{Metodo Colo'} % (fold)
+\label{ssub:metodo_colo_}
+
+Per quanto detto sopra 
+\begin{equation}
+    \rot \mbf B = -\nabla^2 A
+\end{equation}
+Si può quindi sostituire l'espressione di $\mbf A$ trovata e il laplaciano entra sotto integrale e $\mbf J$ è indipendente dalle coordinate non primate. Quindi resta $\nabla^2 \frac{ 1 }{ \rcurs } $ che è una delta, per cui si ottiene la quarta equazione di Maxwell. 
+
+% subsubsection metodo_colo_ (end)
+
+% subsection quarta_equazione_di_maxwell (end)
+
+\subsection{Dipolo magnetico} % (fold)
+\label{sub:dipolo_magnetico}
+
+Integrare la \ref{eq:prima_laplace} per trovare la forza su un circuito spesso non è agevole. In prima approssimazione però il circuito può essere approssimato ad un dipolo magnetico di momento:
+\begin{equation}
+    \mbf m = I \mbf S = I \int_S d \mbf S = IS \vers n
+\end{equation}
+Dove l'ultima formula vale nel caso il circuito sia su un piano, con normale $\vers n$.
+Si hanno quindi formule analoghe a quelle di un dipolo in campo elettrico. 
+Potenziale e campo di un dipolo: 
+\begin{align}
+    \mbf A &= \mqp \frac{ \mbf m \times \vers r }{ r^2 } \\
+    \mbf B &= \mqp \frac{ 1 }{ r^3 } \left ( 3(\mbf m \cdot \vers r )  \vers r - \mbf m \right )
+\end{align}
+La prima segue dalla seconda calcolando il rotore e sfruttando le seguenti uguaglianze:
+\begin{align}
+    \rot \left ( \frac{ \mbf m \times \mbf r }{ r^3 }  \right ) 
+        &= \frac{ 1 }{ r^3 } \rot (\mbf m \times \mbf r) + \grad \left ( \frac{ 1 }{ r^3 } \right ) \times (\mbf m \times \mbf r) \\
+    \rot (\mbf m \times \mbf r) &= 2 \mbf m \\
+    \grad \frac{ 1 }{ r^3 } \times (\mbf m \times \mbf r)   &= - \frac{ 3 \vers r \times (\mbf m \times \vers r) }{ r^3 } \\
+                                                            &=  \frac{ 3 }{ r^3 } (\vers r ( \mbf m \cdot \vers r) - \mbf m)
+\end{align}
+
+Dipolo in campo magnetico:
+\begin{align}
+    \mbf M &= \mbf m \times \mbf B \\
+    U &= - \mbf m \cdot \mbf B \\
+    F &= \grad(\mbf m \cdot \mbf B)
+\end{align}
+
+% subsection dipolo_magnetico (end)
+
+\subsection{Interazione tra correnti} % (fold)
+\label{sub:interazione_tra_correnti}
+
+Pensiamo a due circuiti 1 e 2 e cerchiamo di calcolare la forza esercitata da 1 su 2. In questo paragrafo $\brcurs = \mbf r_2 -\mbf r_1$
+\begin{equation}
+    d \mbf F_{12} = I_2 d \mbf l_2 \times \mbf B(\mbf r_2) = I_2 d \mbf l_2 \times \oint \mqp \frac{ I_1 d \mbf l_1 \times \hrcurs }{ \rcurs^2 } 
+\end{equation}
+\begin{equation}
+    \mbf F_{12} = \mqp[I_1 I_2] \oint \oint   \frac{ d \mbf l_2 \times (d \mbf l_1 \times \hrcurs) }{ \rcurs^2 } 
+\end{equation}
+Tuttavia questa formula è inutilizzabile e non è neanche apparente il principio di azione e reazione. La riscriviamo in un'altra forma. Sviluppiamo prima il doppio prodotto vettore:
+\begin{equation}
+    d \mbf l_2 \times (d \mbf l_1 \times \hrcurs) = d \mbf l_1 (d \mbf l_2 \cdot \hrcurs) - \hrcurs ( d \mbf l_2 \cdot  d \mbf l_1)
+\end{equation}
+Inoltre il primo termine non contribuisce poiché:
+\begin{equation}
+    \oint d \mbf l_2 \cdot \frac{ \hrcurs }{ \rcurs^2 } = \oint d \mbf l_2 \grad \frac{ 1 }{ \rcurs } = 0
+\end{equation}
+Quindi la forza è data da:
+\begin{equation}
+    \mbf F_{12} = \mqp[I_1 I_2] \oint \oint \frac{ \hrcurs ( d \mbf l_2 \cdot  d \mbf l_1) }{ \rcurs^2 } 
+\end{equation}
+Ora, invertendo 1 e 2 cambia solo il segno di $\brcurs$, per cui si ottiene una forza uguale e opposta.
+
+% subsection interazione_tra_correnti (end)
+
+% section magnetostatica (end)

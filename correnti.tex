@@ -1,0 +1,67 @@
+\section{Correnti} % (fold)
+\label{sec:correnti}
+
+Definiamo la fem ("forza" elettromotrice):
+\begin{equation}
+    \mathscr{E} = \oint \mbf f \cdot d \mbf l
+\end{equation}
+Dove $\mbf f = \mbf F/q$ è la forza elettromotrice per unità di carica. Questa forza può essere di tipi diversi, due esempi sono il caso di una batteria ed il caso della fem indotta. Nel primo caso la $\mbf f$ è presente solo nella batteria (con estremi A positivo e B negativo). Inoltre, quando questa è a morsetti staccati si ha $\mbf f = - \mbf E$ affinchè ci sia l'equilibrio. Quindi si ha:
+\begin{equation}
+    \mathscr{E} = \int_B^A \mbf f \cdot d \mbf l = - \int_B^A \mbf E \cdot d \mbf l = V(A) - V(B)
+\end{equation}
+
+Invece nel caso di una fem indotta abbiamo che l'unica forza in gioco è quella di Lorentz. Per cui si ha:
+\begin{equation}
+    \mathscr{E} = \oint \mbf f \cdot d \mbf l = \oint (\mbf {E + v \times B}) \cdot d \mbf l  = -\frac{ d\Phi }{ dt } 
+\end{equation}
+Dove l'ultima uguaglianza è la legge di Faraday.
+
+Vale poi la legge di Ohm:
+\begin{equation}
+    V=RI
+\end{equation}
+Che può anche esser scritta in forma differenziale:
+\begin{equation}
+    \mbf J = \sigma \mbf E
+\end{equation}
+La resistenza R, nel caso di un cilindro di lunghezza $l$ e sezione uniforme $S$ è data da:
+\begin{equation}
+    R = \frac{ \rho l  }{ S } 
+\end{equation}
+Nel caso di geometrie più complicate vale localmente una formula analoga a questa:
+\begin{equation}
+    dR = \frac{ \rho dl  }{ S } 
+\end{equation}
+che dev'essere poi integrata.
+
+Inoltre vale poi la conservazione della carica che può esser scritta in forma integrale:
+\begin{equation}
+    \frac{ dQ }{ dt } + \int_S \mbf J \cdot d \mbf S = 0
+\end{equation}
+o in forma differenziale:
+\begin{equation}
+    \frac{ \partial \rho }{ dt } + \div J = 0
+\end{equation}
+
+Da questa poi segue direttamente la legge dei nodi di Kirchoff: 
+\begin{equation} \label{eq:kirchoff_nodi} 
+    \sum_i I_i = 0
+\end{equation}
+
+Invece dalla seconda equazione di Maxwell, ovvero dal fatto che la circuitazione del campo elettrico è nulla, segue la legge delle maglie di kirchoff:
+\begin{equation}
+    \sum_i \Delta V_i = 0
+\end{equation}
+Che nel caso siano presenti delle fem può esser scritta come:
+\begin{equation}
+    \sum_j \mathscr E_j = \sum_i \Delta V_i
+\end{equation}
+
+Infine in generale in un circuito può esser complicato capire quante e quali maglie prendere. Tuttavia perlomeno vale la seguente formula: detti N i nodi, L i rami e M le maglie indipendenti, si ha:
+\begin{equation}
+    M = L - N + 1
+\end{equation}
+
+CARICA E SCARICA DEL CONDENSATORE BALZATI MA EASY.
+
+% section correnti (end)

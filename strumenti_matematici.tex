@@ -1,0 +1,211 @@
+\section{Strumenti matematici} % (fold)
+\label{sec:strumenti_matematici}
+
+\subsection{Vettori} % (fold)
+\label{sub:vettori}
+
+Prodotto misto: 
+
+\begin{equation}
+    \mbf{ A \cdot ( B \times C ) }
+\end{equation}
+è possibile ciclare i tre vettori
+\begin{equation}
+    \mbf{ A \cdot ( B \times C ) } =
+    \mbf{ B \cdot ( C \times A ) } =
+    \mbf{ C \cdot ( A \times B ) }
+\end{equation}
+e anche scambiare prodotto scalare e vettoriale
+\begin{equation}
+    \mbf{ A \cdot ( B \times C ) } = \mbf{ ( A \times B ) \cdot C }
+\end{equation}
+
+Doppio prodotto vettore. Vale la regola del BAC-CAB:
+
+\begin{equation}
+    \mbf{ A \times ( B \times C ) } = \mbf{ B ( A \cdot C) - C ( A \cdot B) }
+\end{equation}
+Non è associativo ma vale l'identità di Jacobi:
+\begin{equation}
+    \mbf{ A \times ( B \times C ) } +
+    \mbf{ B \times ( C \times A ) } +
+    \mbf{ C \times ( A \times B ) } = 0
+\end{equation}
+
+% subsection vettori (end)
+
+\subsection{Analisi Vettoriale} % (fold)
+\label{sub:analisi_vettoriale}
+
+
+
+Derivazione in coordinate cartesiane. Operatore nabla:
+\begin{equation}
+    \nabla = \partial_x \vers x + \partial_y \vers y + \partial_z \vers z
+\end{equation}
+
+Gradiente: 
+\begin{equation}
+    \nabla f = \partial_x f \vers x + \partial_y f \vers y + \partial_z f \vers z
+\end{equation}
+
+Rotore: 
+\begin{equation}
+    \nabla \times \mbf A = 
+    \begin{vmatrix}
+        \vers i     & \vers j       & \vers k       \\
+        \partial_x  & \partial_y    & \partial_z    \\
+        A_x         & A_y           & A_z
+    \end{vmatrix}
+\end{equation}
+
+Divergenza: 
+\begin{equation}
+    \nabla \cdot \mbf A = \partial_x A_x + \partial_y A_y + \partial_z A_z
+\end{equation}
+
+% subsection analisi_vettoriale (end)
+
+\subsubsection{Gradiente} % (fold)
+\label{ssub:gradiente}
+
+
+Il gradiente può anche essere definito nel seguente modo, indipendente dalle coordinate usate.
+\begin{equation} \label{eq:grad_def}
+    ( \nabla f ) \cdot \vers t = \lim_{ dl \to 0 }  \frac{ df }{ dl } 
+\end{equation}
+Dove la variazione di f è presa lungo un tratto infinitesimo di lunghezza $dl$ e direzione $\vers t$.
+
+Passando ad un percorso finito $\gamma$ si ha 
+\begin{equation*}
+    \int_\gamma ( \nabla f ) \cdot \vers t dl = \Delta f
+\end{equation*}
+
+Questo è il teorema del gradiente (o teorema fondamentale del calcolo), che può esser scritto anche nel seguente modo.
+\begin{equation}
+    \int_A^B \nabla f \cdot d \mbf l = f(B) - f(A)
+\end{equation}
+
+Per il gradiente c'è un modo più immediato di trovare la relazione sopra, ma il modo sopra è utile poichè è del tutto analogo al procedimento per il rotore e la divergenza.
+
+Il modo più diretto è il seguente. Il differenziale di un campo vettoriale scalare può esser scritto nel seguente modo:
+\begin{equation}
+    df = \nabla f \cdot d \mbf l
+\end{equation}
+Integrando segue direttamente il teorema del gradiente.
+
+% subsubsection gradiente (end)
+
+\subsubsection{Rotore} % (fold)
+\label{ssub:rotore}
+
+Per il rotore vale la seguente definizione:
+\begin{equation} \label{eq:rot_def}
+    ( \nabla \times \mbf A ) \cdot \vers n 
+        = \lim_{ dS \to 0 } \frac{ 1 }{ dS }  \int_\gamma \mbf A \cdot d \mbf l 
+        = \lim_{ dS \to 0 } \frac{ dC }{ dS }
+\end{equation}
+Dove $dS$ è un'area infinitesima e $\vers n$ è la sua normale. $\gamma$ è il bordo di S, ovvero un circuito infinitesimo. $dC$ è la circuitazione attraverso questo circuito infinitesimo.
+
+Passando ad una superficie $S$ finita si ha quindi:
+\begin{equation*}
+    \int_S ( \nabla \times \mbf A ) \cdot \vers n dS = C
+\end{equation*}
+Questo è il teorema di Stokes (o del rotore), che può esser scritto anche nel seguente modo. ($\partial S$ è il bordo di $S$)
+\begin{equation}
+    \int_S ( \nabla \times \mbf A ) \cdot d \mbf S = \int_{\partial S} \mbf A \cdot d \mbf l
+\end{equation}
+
+
+% subsubsection rotore (end)
+
+\subsubsection{Divergenza} % (fold)
+\label{ssub:divergenza}
+
+
+Per la divergenza vale la seguente definizione:
+\begin{equation}    \label{eq:div_def} 
+    \nabla \cdot \mbf A 
+        = \lim_{ dV \to 0 } \frac{ 1 }{ dV } \int_S \mbf A \cdot d \mbf S 
+        = \lim_{ dV \to 0 } \frac{ d\Phi }{ dV }
+\end{equation}
+Dove $dV$ è un volume infinitesimo, $S$ è la sua superficie. $d\Phi$ è il flusso attraverso $S$.
+
+Passando ad un volume finito si ha:
+\begin{equation*}
+    \int_V \nabla \cdot \mbf A dV = \Phi
+\end{equation*}
+Questo è il teorema della divergenza (o di Gauss), che può esser scritto anche nel seguente modo. ($\partial V$ è il bordo di $V$)
+\begin{equation}
+    \int_V \nabla \cdot \mbf A dV = \int_{\partial V} \mbf A \cdot d \mbf S
+\end{equation}
+
+
+% subsubsection divergenza (end)
+
+\subsection{Derivate seconde} % (fold)
+\label{sub:derivate_seconde}
+
+Si possono fare le seguenti derivate seconde con l'operatore nabla:
+\begin{enumerate}
+    \item $\nabla \times \nabla f = 0 $ 
+    \item $\nabla \cdot \nabla f =: \nabla^2 f = \Delta f$ Definizione del Laplaciano
+    \item $\nabla \times \nabla \times A$ 
+    \item $\nabla \cdot \nabla \times A = 0$ 
+    \item $\nabla (\nabla \cdot A)$ 
+\end{enumerate}
+La 5. non è di particolare interesse e per la 3 vale la seguente uguaglianza:
+\begin{equation}
+    \nabla \times \nabla \times A = \nabla (\nabla \cdot A) - \nabla^2 A
+\end{equation}
+Per chiarezza esplicitiamo il laplaciano di un campo scalare e di un campo vettoriale:
+\begin{align}
+    \nabla^2 f &= \partial_x^2 f + \partial_y^2 f + \partial_z^2 f \\
+    \nabla^2 A &= \nabla^2 A_x \vers x + \nabla^2 A_y \vers y + \nabla^2 A_z \vers z
+\end{align}
+
+% subsection derivate_seconde (end)
+
+\subsection{Derivate di prodotti} % (fold)
+\label{sub:derivate_di_prodotti}
+
+Ci sono sei regole per le derivate di prodotti di funzioni. Due per il gradiente:
+\begin{equation} \label{eq:grad_prod} 
+    \grad (fg) = f \grad g + f \grad g                             
+\end{equation}
+\begin{equation} \label{eq:grad_prod_scal}
+    \grad (\mbf A \cdot \mbf B) = \mbf A \times (\rot \mbf B) + \mbf B \times (\rot \mbf A)
+                       + (\mbf A \cdot \nabla) \mbf B + (\mbf B \cdot \nabla) \mbf A    
+\end{equation}
+due per la divergenza:
+\begin{equation} \label{eq:div_prod} 
+    \div (f\mbf A) = f (\div \mbf A) + \mbf A \cdot (\grad f)
+\end{equation}
+\begin{equation} \label{eq:div_prod_vett} 
+    \div (\mbf A \times \mbf B) = \mbf B \cdot (\rot \mbf A) - \mbf A \cdot ( \rot \mbf B)
+\end{equation}
+e due per il rotore:
+\begin{equation} \label{eq:rot_prod} 
+    \rot (f\mbf A) = f (\rot \mbf A) + (\grad f) \times \mbf A
+\end{equation}
+\begin{equation} \label{eq:rot_prod_vett} 
+    \rot (\mbf A \times \mbf B) = (\mbf B \cdot \nabla) \mbf A - (\mbf A \cdot \nabla) \mbf B + \mbf A (\div \mbf B) - \mbf B(\div \mbf A)
+\end{equation}
+
+% subection derivate_di_prodotti (end)
+
+
+\subsection{Derivate utili} % (fold)
+\label{sub:derivate_utili}
+
+\begin{align} 
+    \nabla \cdot \frac{ \vers r }{ r^2 } &= 4 \pi \delta(\mbf r)        \label{eq:derivate_utili_divr2} \\ 
+    \nabla \cdot (r^n \vers r)  &= (n+2)r^{n-1}, \qquad n \neq -2       \label{eq:derivate_utili_div}   \\
+    \nabla r^n &= n r^{n-1} \vers r                                     \label{eq:derivate_utili_grad}  \\
+    \nabla \times (r^n \vers r) &= 0                                    \label{eq:derivate_utili_rot}   
+\end{align}
+Le stesse formule valgono anche sostituendo $\rcurs$ al posto di $r$. Nel caso di $\rcurs$ è possibile anche derivare rispetto alle coordinate primate, in quel caso compare un $-$.
+
+% subsection derivate_utili (end)
+
+% section strumenti_matematici (end)

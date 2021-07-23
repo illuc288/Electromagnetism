@@ -1,0 +1,149 @@
+\section{Elettrostatica nei materiali} % (fold)
+\label{sec:elettrostatica_nei_materiali}
+
+Studiamo ora cosa succede al campo elettrico in materiali isolanti, chiamati dielettrici, in cui gli atomi sono legati ai propri atomi. Succede un fenomeno simile a quello che avviene nei conduttori, ma poiché gli elettroni non sono liberi, il dielettrico non riesce a schermare completamente il campo elettrico esterno. Il campo viene quindi ridotto ma non eliminato. Quello che succede è che mettendo il dielettrico in un campo elettrico si formano molti dipoli che creano un campo opposto a quello esterno. Questo processo, la polarizzazione, può avvenire in due modi: per deformazione o per orientamento.
+
+\subsection{Polarizzazione per deformazione} % (fold)
+\label{ssub:polarizzazione_per_deformazione}
+
+Pensiamo ad esempio ad un gas nobile in condizioni di gas ideale, per cui le interazioni tra i diversi atomi posson essere trascurate. Possiamo pensare all'atomo come ad un nucleo di carica positiva $+Ze$ ed una nube elettronica di carica complessiva $-Ze$. Normalmente immaginiamo che l'atomo sia in equilibrio se i baricentri delle due configurazioni coincidono. Se in queste condizioni c'è un minimo allora possiamo pensare che la forza che tiene unito l'atomo sia una forza armonica: $\mbf F_{int} \propto \mbf r $, dove $\mbf r$ è il vettore dal baricentro della carica negativa a quello della carica positiva. L'atomo nel campo elettrico sarà allora in equilibrio quando la forza elettrica è uguale e opposta a questa forza interna. Quindi la forza elettrica, e di conseguenza il campo elettrico, è anch'essa proporzionale a $\mbf r$. Tuttavia se i baricentri delle cariche non coincidono allora si forma un momento di dipolo: $\mbf p = Ze \mbf r$, ovvero il momento di dipolo, come il campo elettrico è proporzionale ad $\mbf r$. Ma allora sono proporzionali tra loro:
+\begin{equation}
+    \mbf p = \alpha \mbf E
+\end{equation}
+Dove $\alpha$ è la polarizzabilità. Nel caso di molecole lo studio è più complicato, ma vale comunque una relazione analoga a quella sopra, tuttavia $\alpha$ non è più un numero ma diventa un tensore.
+
+Calcoliamo quanto potrebbe essere $\alpha$. Supponiamo la carica + sia puntiforme e la carica $-$ sia invece distribuita uniformemente dentro una sfera. Il campo dovuto a questa distribuzione è dato da:
+\begin{equation}
+    \mbf E_{int} = \frac{ \rho \mbf r }{ 3 \ez } = \qpe[Ze] \frac{ \mbf r }{ R^3 } = \qpe \frac{ \mbf p }{ R^3 } 
+\end{equation}
+Per avere l'equilibrio il campo esterno dovrà avere lo stesso valore:
+\begin{equation}
+    \mbf E = \mbf E_{int} = \qpe[R^3] \mbf p
+\end{equation}
+Quindi si ha:
+\begin{equation}
+    \alpha = 4 \pi \ez R^3 \sim 10^{-40}
+\end{equation}
+
+% subsection polarizzazione_per_deformazione (end)
+
+\subsection{Polarizzazione per orientamento} % (fold)
+\label{sub:polarizzazione_per_orientamento}
+
+Spesso si ha a che fare con molecole già polarizzate. Quello che succede in questi materiali è che i dipoli già presenti cercano di allinearsi al campo elettrico esterno, ma così facendo producono un campo opposto che riduce il campo esterno. I dipoli tendono ad allinearsi al campo elettrico poiché si ha $U = - \mbf p \cdot \mbf E$, quindi l'energia è minima quando il dipolo è allineato al campo. Tuttavia l'allineamento non è completo poiché la forza elettrostatica deve competere con l'agitazione termica delle molecole. Per mettere queste due insieme usiamo la distribuzione di Boltzmann:
+\begin{equation}
+    P(\theta) = N e^{-\frac{ U }{ kT } } = N e^{-\frac{ p E \cos \theta }{ kT } }
+\end{equation}
+La probabilità che l'angolo tra il dipolo e il campo sia tra $\theta$ e $\theta + d\theta$ è data da:
+\begin{equation}
+    dP = P(\theta) d\Omega = P(\theta) \sin \theta d\theta d\phi
+\end{equation}
+Integrando questa, sfruttando il fatto che $\frac{ pE }{ kT } \ll 1$ si trova $N = 1/4\pi$.
+Calcoliamo quindi la media del momento di dipolo nella direzione di $\mbf E$. Le altre componenti in media saranno nulle per simmetria.
+\begin{equation}
+    \langle \mbf p \rangle = \int \mbf p \cdot \vers E dP = \int p \cos \theta dP = \cdots = \frac{ p^2 E }{ kT } 
+\end{equation}
+
+% subsection polarizzazione_per_orientamento (end)
+
+\subsection{Campo di un oggetto polarizzato} % (fold)
+\label{sub:campo_di_un_oggetto_polarizzato}
+
+La conseguenza in entrambi i casi è che si ha $\mbf p = \alpha \mbf E$. Che campo genera questo oggetto contenente moltissimi dipoli? Introduciamo il vettore polarizzazione per calcolare il campo. 
+\begin{equation}
+    \mbf P = \lim_{V \to 0} \frac{ \sum_i \mbf p_i }{ V } 
+\end{equation}
+Dove $\mbf p_i$ sono i momenti dei dipoli nel volume $V$. Per un volumetto $dV$ si ha allora un piccolo momento di dipolo: $d \mbf p = \mbf P(\mbf r') d\tau'$. Ricordiamo la formula \ref{eq:campo_dipolo} per il campo di un dipolo:
+\begin{equation}
+    V(\mbf r) 
+        = \qpe[\mbf p \cdot \vers r] \frac{ 1 }{ r^2 } 
+\end{equation}
+Per tanti dipoli infinitesimi:
+\begin{equation}
+    V(\mbf r) 
+        = \qpe \int d\mbf p \cdot \frac{ \hrcurs }{ \rcurs^2 } 
+        = \qpe \int_V \mbf P(\mbf r') \cdot \frac{ \hrcurs }{ \rcurs^2 } d\tau'
+\end{equation}
+Tuttavia questa formula non è molto utile nella pratica. Può invece essere scritta in una forma molto più interessante. Ricordiamo da \ref{eq:derivate_utili_grad} che si ha:
+\begin{equation}
+    \grad['] \frac{ 1 }{ \rcurs } = - \grad \frac{ 1 }{ \rcurs } = \frac{ \hrcurs }{ \rcurs^2 }
+\end{equation}
+e la regola del prodotto \ref{eq:div_prod}:
+\begin{equation}
+    \div['] ( \frac{ 1 }{ \rcurs }\mbf P) =  \frac{ 1 }{ \rcurs } (\div['] \mbf P) + \mbf P \cdot (\grad['] \frac{ 1 }{ \rcurs })
+\end{equation}
+Quindi l'integrando può esser scritto come:
+\begin{equation}
+    \mbf P \cdot \frac{ \hrcurs }{ \rcurs^2 } 
+        = \mbf P \cdot (\grad['] \frac{ 1 }{ \rcurs }) 
+        = \div['] ( \frac{ 1 }{ \rcurs }\mbf P) -  \frac{ 1 }{ \rcurs } (\div['] \mbf P)
+\end{equation}
+E il potenziale:
+\begin{align}
+    V   &= \qpe \int_V \div['] ( \frac{ 1 }{ \rcurs }\mbf P) d\tau'  - \int_V \frac{ 1 }{ \rcurs } (\div['] \mbf P) d\tau' \\
+        &= \qpe \int_S \frac{ \mbf P \cdot \vers n }{ \rcurs } dS' - \int_V \frac{ \div['] \mbf P }{ \rcurs } d\tau' \\
+        &= \qpe \int_S \frac{ \sigma_p }{ \rcurs } dS' + \int_V \frac{ \rho_p }{ \rcurs } d\tau' 
+\end{align}
+Dove nell'ultima uguaglianza abbiamo osservato che i due integrali avevano esattamente la stessa forma del potenziale di una carica superficiale e di quello di una carica volumica. Abbiamo chiamato le due quantità a numeratore densità di carica di polarizzazione, rispettivamente superficiale e volumica:
+\begin{align}
+    \sigma_p    &= \mbf P \cdot \vers n \\
+    \rho_p      &= - \div \mbf P
+\end{align}
+Inoltre queste quantità non sono solo strumenti matematici, ma sono proprio delle densità di carica che compaiono all'interno del dielettrico. Ad esempio se pensiamo ad un'asta dielettrica parallela al campo elettrico, allora si formano dei dipoli lungo tutta l'asta nella direzione dell'asta. Quindi agli estremi c'è un accumulo di carica che è appunto la $\sigma_p$ definita sopra. Lo stesso ragionamento vale per la carica volumica. Osserviamo infatti che nel caso in cui $\mbf P$ sia uniforme allora la densità volumica è nulla. Questo ha senso poiché all'interno del dielettrico gli accumuli di carica ad un estremo del dipolo sono annullati da accumuli di carica di segno opposto dei dipoli adiacenti.
+
+% subsection campo_di_un_oggetto_polarizzato (end)
+
+\subsection{Dielettrici lineari} % (fold)
+\label{sub:dielettrici_lineari}
+
+Vediamo ora come $\mbf P$ è collegato al campo esterno $\mbf E$ e com'è il campo elettrico complessio nel dielettrico. 
+Partiamo dalla definizione di $\mbf P$. 
+\begin{equation}
+    \mbf P = \lim_{V \to 0} \frac{ \sum_i \mbf p_i }{ V } 
+\end{equation}
+Pensiamo al caso semplificato in cui tutti i $\mbf p_i$ sono uguali e pari a $\mbf p$. Allora si ha 
+\begin{equation}
+    \mbf P = \frac{ N \mbf p }{ V } = n \mbf p = n \alpha \mbf E
+\end{equation}
+Si ha quindi che $\mbf P$ è proporzionale a $\mbf E$:
+\begin{equation}
+    \mbf P = \ez \chi \mbf E
+\end{equation}
+L'ipotesi sopra è forte, tuttavia questa formula vale per un insieme di dielettrici chiamati dielettrici lineari. Nel caso più generale $\mbf P$ ed $\mbf E$ non sono nella stessa direzione, per cui $\chi$ è un campo tensoriale (campo poiché dipende dalla posizione). Tuttavia considereremo il caso più semplice di dielettrici omogenei (per cui $\chi$ non dipende dalla posizione) e isotropi (per cui $\mbf E \parallel \mbf P$). In questo caso $\chi$ è un numero. 
+
+Vogliamo ora riscrivere la prima equazione di Maxwell, poiché nella forma attuale $\div \mbf E = \rho /\ez$ la densità di carica include tutte le cariche, anche quelle di polarizzazione. Tuttavia poiché non possiamo controllare le cariche di polarizzazione, sarebbe più comodo avere una formula con le sole cariche libere:
+\begin{align}
+    \div \mbf E     &= \frac{ \rho_p + \rho_l }{ \ez }  \\
+    \div \ez \mbf E - \rho_p &= \rho_l \\
+    \div \ez \mbf E + \div \mbf P &= \rho_l \\
+    \div \mbf D &= \rho_l 
+\end{align}
+Dove 
+\begin{equation}
+    \mbf D = \ez \mbf E + \mbf P
+\end{equation}
+è il campo di spostamento elettrico, che nel nostro caso può esser scritto come:
+\begin{equation}
+    \mbf D = \ez \mbf E + \ez \chi \mbf E = \ez \epsilon_r E
+\end{equation}
+Con $\epsilon_r = 1 + \chi $.
+
+% subsection dielettrici_lineari (end)
+
+\subsection{Energia} % (fold)
+\label{sub:energia}
+
+Vediamo ora come cambia la formula dell'energia nel caso dei dielettrici.
+Vale ancora la \ref{eq:energia_elettrostatica_rhoV}, tuttavia ora si ha $\rho = \div \mbf D$:
+\begin{align*} 
+    U   &= \frac{ 1 }{ 2 } \int_V \rho V d\tau 
+        = \frac{ 1 }{ 2 } \int_V (\div \mbf D) V d\tau 
+        = \frac{ 1 }{ 2 } \left [ \int_V \div (\mbf DV) d\tau - \int_V \mbf D \cdot (\grad V) d\tau \right ] \\
+        &= \frac{ 1 }{ 2 } \left [ \int_S \mbf DV \cdot d\mbf S + \int_V \mbf D \cdot \mbf E d\tau \right ]
+        = \frac{ 1 }{ 2 } \int_V \mbf D \cdot \mbf E d\tau 
+\end{align*}
+Dove, analogamente alla \ref{eq:energia_elettrostatica}, l'ultima uguaglianza vale nel caso in cui si integra su tutto lo spazio.
+
+% subsection energia (end)
+
+% section elettrostatica_nei_materiali (end)
