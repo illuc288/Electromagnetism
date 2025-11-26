@@ -1,20 +1,66 @@
-name: Build PDF and release
-on: push
+name: Build PDF and Push to Orphan Branch
+
+on:
+  push:
+    branches:
+      - main         # Trigger on pushes to main
+  pull_request:
+    branches:
+      - main         # Trigger on pull requests to main
 
 jobs:
-  build_latex:
+  build-pdf:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
-      - name: Compile LaTeX
-        uses: xu-cheng/latex-action@v3
+      # 0. Cache APT packages for faster dependency installation
+      - name: Cache APT packages
+        uses: actions/cache@v3
         with:
-          root_file: main.tex
-      - name: Get timestamp
-        run: echo "TIMESTAMP=$(date +'%Y-%m-%d %T')" >> $GITHUB_ENV
-      - name: Release
-        uses: softprops/action-gh-release@v2
+          path: |
+            /var/cache/apt
+            /var/lib/apt/lists            
+          key: ${{ runner.os }}-apt-cache
+
+      # 1. Check out the repository
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      # 2. Set up LaTeX environment (full TeXLive is installed by default)
+      - name: Set up LaTeX environment
+        uses: xu-cheng/latex-action@v2
         with:
-          name: Draft ${{ env.TIMESTAMP }}
-          files: main.pdf
-          draft: true
+          root_file: "paper.tex"
+
+      # 3. Compile PDF using Makefile
+      - name: Compile PDF using Makefile
+        run: make
+
+      # 4. Upload the compiled PDF as an artifact
+      - name: Upload PDF artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: compiled-pdf
+          path: paper.pdf
+
+      # 5. Commit the PDF to an orphan branch named 'pdflatex'
+      - name: Commit PDF to orphan branch
+        run: |
+          # Configure git user details
+          git config --global user.name "GitHub Action"
+          git config --global user.email "action@github.com"
+          # Create an orphan branch named pdflatex (this leaves all files in place)
+          git checkout --orphan pdflatex
+          # Remove all tracked files from the index (this doesn't remove untracked files)
+          git rm -rf .
+          # Since paper.pdf is already present in the working directory,
+          # we don't need to copy it.
+          git add paper.pdf
+          git commit -m "Built PDF"          
+      # 6. Push the orphan branch to GitHub
+      - name: Push orphan branch
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: pdflatex
+          force: true
