@@ -15,6 +15,7 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: pdf
+          tag_name: another
           name: Draft ${{ env.TIMESTAMP }}
           files: main.pdf
+          prerelease: true
