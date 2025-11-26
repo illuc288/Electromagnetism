@@ -11,11 +11,10 @@ jobs:
         with:
           root_file: main.tex
       - name: Get timestamp
-        run: echo "TIMESTAMP=$(date +'%Y-%m-%d %T')" >> $GITHUB_ENV
+        run: echo "TIMESTAMP=$(date +'%d/%m')" >> $GITHUB_ENV
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: another
-          name: Draft ${{ env.TIMESTAMP }}
+          tag_name: pdf
+          name: Current version (updated ${{ env.TIMESTAMP }})
           files: main.pdf
-          prerelease: true
