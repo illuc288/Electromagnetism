@@ -41,7 +41,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: compiled-pdf
-          path: paper.pdf
+          path: main.pdf
 
       # 5. Commit the PDF to an orphan branch named 'pdflatex'
       - name: Commit PDF to orphan branch
@@ -53,9 +53,9 @@ jobs:
           git checkout --orphan pdflatex
           # Remove all tracked files from the index (this doesn't remove untracked files)
           git rm -rf .
-          # Since paper.pdf is already present in the working directory,
+          # Since main.pdf is already present in the working directory,
           # we don't need to copy it.
-          git add paper.pdf
+          git add main.pdf
           git commit -m "Built PDF"          
       # 6. Push the orphan branch to GitHub
       - name: Push orphan branch
