@@ -18,3 +18,4 @@ jobs:
           tag_name: latest
           name: Draft ${{ env.TIMESTAMP }}
           files: main.pdf
+          draft: true
