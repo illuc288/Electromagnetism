@@ -30,7 +30,7 @@ jobs:
       - name: Set up LaTeX environment
         uses: xu-cheng/latex-action@v2
         with:
-          root_file: "paper.tex"
+          root_file: "main.tex"
 
       # 3. Compile PDF using Makefile
       - name: Compile PDF using Makefile
