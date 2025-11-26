@@ -16,5 +16,5 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           tag_name: pdf
-          name: Current version (updated ${{ env.TIMESTAMP }})
+          name: Current version (updated 27/12)
           files: main.pdf
