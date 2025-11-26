@@ -6,15 +6,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      # some standard thing, tells github to use the main branch or smth
       - name: Compile LaTeX
         uses: xu-cheng/latex-action@v3
+      # thing that compiles the project (already has the latest version of texlive)
         with:
           root_file: main.tex
       - name: Get timestamp
+      # get time so I can use it later
         run: echo "TIMESTAMP=$(date +'%d/%m')" >> $GITHUB_ENV
       - name: Release
+      # to create a release where I can put the compiled pdf. Tag name is pretty useless, 
+      # name is the title of the release so pretty visible
+      # basically it seems like there's one release (which also has the source code for some reason)
+      # and the title and main.pdf are changed every time I push (the source is still there but unchanged for some reason)
         uses: softprops/action-gh-release@v2
         with:
           tag_name: pdf
-          name: Current version (updated 27/12)
+          name: Current version (updated ${{ env.TIMESTAMP }})
           files: main.pdf
+          #add draft: true to create a new release at each push, basically getting a pdf for every single version
